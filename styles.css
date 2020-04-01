@@ -1,0 +1,112 @@
+
+:root {
+
+    --font-raleway: 'Raleway', sans-serif;
+    --font-code: monospace;
+    --font-primary-color: white;
+
+    --primary-color: rgb(0, 14, 48);
+    --primary-2-color: rgba(0,14,48, 1);
+    --secondary-color: rgb(0, 255, 213);
+    --teriary-color: rgb(61, 149, 184);
+    /* --primary-color: rgb(0, 46, 83);
+    --secondary-color: aqua;
+    --teriary-color: rgb(61, 139, 184); */
+
+}
+
+html {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+
+/* Navbar */
+
+.navbar {
+    background-color: var(--primary-2-color);
+    padding: 2% 0;
+}
+
+.nav-git-icon {
+    font-size: 2rem;
+    margin: 0 10px;
+    color: var(--secondary-color);
+
+    animation-name: spinner;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+.title {
+    color: var(--secondary-color);
+    font-size: 2rem;
+}
+
+.nav-link {
+    text-align: right;
+    font-size: 1.5rem;
+    margin: 10px 20px;
+    transition: all 0.5s ease;
+}
+
+.nav-link:hover {
+    margin-top: 1%;
+    transition: all 0.5s ease;
+    color: var(--secondary-color);
+}
+
+.row, .col {
+    padding: 0;
+    margin: 0;
+}
+
+#contact {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    padding: 5% 0 50vh 0;
+    width: 100%;
+    margin: 0;
+    height: 100vh;
+    background-color: var(--teriary-color);
+}
+
+.contact-h1 {
+    width: 100%;
+    padding: 1vh;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+
+input, textarea, .btn-submit {
+    width: 100%;
+    margin: auto 30vw;
+}
+
+.btn-submit {
+    width: 200px;
+    margin: auto;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-submit:hover {
+    width: 200px;
+    margin: auto;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: rgb(0,5,17);
+    font-family: var(--font-raleway);
+}
