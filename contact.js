@@ -1,7 +1,6 @@
 
 const express = require('express');
 const exphbs  = require('express-handlebars');
-const path = require('path');
 const bodyParser = require('body-parser');
 const nodeMailer = require('nodemailer');
  
@@ -10,13 +9,16 @@ const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json);
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json);
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
+
+    console.log(res);
     res.render('contact');
+
 });
 
 app.post('/send', (req, res) => {
@@ -32,5 +34,5 @@ if (port == null || port == '') {
 };
 
 app.listen(port, () => {
-    console.log('Server running on port:', 3000);
+    console.log('Server running on port:', port);
 });
