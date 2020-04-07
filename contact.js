@@ -32,40 +32,42 @@ app.post("/send", (req, res) => {
     <h3>Message:</h3>
     <p>${req.body.message}</p>`;
 
+  async function main() {
+    // Generate test SMTP service account from ethereal.email
+    // Only needed if you don't have a real mail account for testing
+    let testAccount = await nodeMailer.createTestAccount();
 
-    async function main() {
-        // Generate test SMTP service account from ethereal.email
-        // Only needed if you don't have a real mail account for testing
-        let testAccount = await nodeMailer.createTestAccount();
-      
-        // create reusable transporter object using the default SMTP transport
-        let transporter = nodeMailer.createTransport({
-          host: "smtp.ionos.com",
-          port: 465,
-          secure: true, // true for 465, false for other ports
-          auth: {
-            user: 'test@joetvasquez.com', // generated ethereal user
-            pass: '$$M0neyzDude' // generated ethereal password
-          }
-        });
-      
-        // send mail with defined transport object
-        let info = await transporter.sendMail({
-          from: '"Nodemailer Contact" <test@joetvasquez.com>', // sender address
-          to: "joetv.tech@gmail.com", // list of receivers
-          subject: "Node Contact Request", // Subject line
-          text: "Hello world?", // plain text body
-          html: output // html body
-        });
-      
-        console.log("Message sent: %s", info.messageId);
-        console.log("Preview URL: %s", nodeMailer.getTestMessageUrl(info));
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodeMailer.createTransport({
+      host: "smtp.blahblah.com",
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: "EnterEmailHere", // generated ethereal user
+        pass: "EmailPassword", // generated ethereal password
+      },
 
-        res.render('contact', {message: 'Email has been sent!'});
-        
-      }
-      
-      main().catch(console.error);
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Nodemailer Contact" <test@emailsplat.com>', // sender address
+      to: "...", // list of receivers
+      subject: "Node Contact Request", // Subject line
+      text: "Hello world?", // plain text body
+      html: output, // html body
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodeMailer.getTestMessageUrl(info));
+
+    res.render("contact", { message: "Email has been sent!" });
+  }
+
+  main().catch(console.error);
 });
 
 let port = process.env.PORT;
